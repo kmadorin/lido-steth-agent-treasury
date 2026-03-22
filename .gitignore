@@ -12,3 +12,7 @@ docs/book/
 
 # Dotenv file
 .env
+**/.env
+
+# Node
+node_modules/
