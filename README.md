@@ -13,8 +13,9 @@ Built for the [Synthesis Hackathon](https://synthesis.md) — Lido stETH Agent T
 | Chainlink wstETH/stETH Feed | Base (8453) | `0xB88BAc61a4Ca37C43a3725912B1f472c9A5bc061` | [BaseScan](https://basescan.org/address/0xB88BAc61a4Ca37C43a3725912B1f472c9A5bc061) |
 
 **Roles:**
-- Owner: `0x9F18653E6a6A1a839AFDe51f9e6b21cD888ee185`
-- Agent: `0xD49d5290C81a921C324C1443032209050Ca84614`
+- Owner: [`0x9F18653E6a6A1a839AFDe51f9e6b21cD888ee185`](https://base.blockscout.com/address/0x9F18653E6a6A1a839AFDe51f9e6b21cD888ee185)
+- Agent: [`0xD49d5290C81a921C324C1443032209050Ca84614`](https://base.blockscout.com/address/0xD49d5290C81a921C324C1443032209050Ca84614)
+- Server (payment receiver): [`0x04f3D489938e9F642Fa474e6C8C353e46FA3Ae50`](https://base.blockscout.com/address/0x04f3D489938e9F642Fa474e6C8C353e46FA3Ae50) — whitelisted recipient
 
 **Verified:** Sourcify (exact match)
 
