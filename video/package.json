@@ -1,0 +1,17 @@
+{
+  "name": "steth-agent-treasury-demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npx remotion studio",
+    "build": "npx remotion render StethAgentTreasuryDemo out/demo.mp4 --codec=h264 --crf=18"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.301",
+    "@remotion/google-fonts": "4.0.301",
+    "@remotion/transitions": "4.0.301",
+    "react": "^19",
+    "react-dom": "^19",
+    "remotion": "4.0.301"
+  }
+}
