@@ -8,22 +8,17 @@ dotenv.config({ path: resolve(__dirname, "../../.env") });
 // Base mainnet wstETH
 export const WSTETH_ADDRESS = "0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452" as const;
 
-// Anvil default accounts (public Hardhat test keys — safe to hardcode)
-export const OWNER_KEY =
-  "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80" as const;
-export const AGENT_KEY =
-  "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d" as const;
-export const SERVER_KEY =
-  "0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a" as const;
+// Keys & addresses from .env (with Anvil defaults for local fork testing)
+export const AGENT_KEY = (process.env.AGENT_PRIVATE_KEY ||
+  "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d") as `0x${string}`;
 
-export const OWNER_ADDRESS = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266" as const;
-export const AGENT_ADDRESS = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8" as const;
-export const SERVER_ADDRESS = "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC" as const;
+export const SERVER_ADDRESS = (process.env.SERVER_ADDRESS ||
+  "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC") as `0x${string}`;
 
 // Environment
-export const RPC_URL = process.env.RPC_URL || "http://127.0.0.1:8545";
+export const RPC_URL = process.env.RPC_URL || process.env.BASE_RPC_URL || "http://127.0.0.1:8545";
 export const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || "";
-export const TREASURY_ADDRESS = process.env.TREASURY_ADDRESS as `0x${string}`;
+export const TREASURY_ADDRESS = (process.env.TREASURY_ADDRESS) as `0x${string}`;
 
 // Pricing: wstETH wei per API call
 // 0.00001 wstETH ≈ $0.026 at ~$2,637/wstETH
@@ -33,3 +28,6 @@ export const SERVER_PORT = 3001;
 
 // Default model for demo
 export const DEFAULT_MODEL = "openai/gpt-4.1-nano";
+
+// Chain ID: Base mainnet = 8453, Anvil fork = 31337
+export const CHAIN_ID = RPC_URL.includes("127.0.0.1") || RPC_URL.includes("localhost") ? 31337 : 8453;

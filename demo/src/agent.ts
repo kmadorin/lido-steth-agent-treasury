@@ -10,15 +10,15 @@ import { agentTreasuryAbi } from "./abi.js";
 import {
   RPC_URL,
   AGENT_KEY,
-  SERVER_ADDRESS,
   TREASURY_ADDRESS,
   DEFAULT_MODEL,
   SERVER_PORT,
+  CHAIN_ID,
 } from "./config.js";
 
 // ─── Setup ───────────────────────────────────────────────
 
-const chain = { ...base, id: 31337 }; // Anvil fork
+const chain = { ...base, id: CHAIN_ID };
 const transport = http(RPC_URL);
 const account = privateKeyToAccount(AGENT_KEY);
 

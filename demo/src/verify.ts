@@ -1,9 +1,9 @@
 import { createPublicClient, http, parseAbiItem, type Hash } from "viem";
 import { base } from "viem/chains";
-import { RPC_URL, WSTETH_ADDRESS } from "./config.js";
+import { RPC_URL, WSTETH_ADDRESS, CHAIN_ID } from "./config.js";
 
 const publicClient = createPublicClient({
-  chain: { ...base, id: 31337 }, // Anvil fork uses chainId 31337
+  chain: { ...base, id: CHAIN_ID },
   transport: http(RPC_URL),
 });
 
