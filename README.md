@@ -72,15 +72,53 @@ OPENROUTER_API_KEY=sk-or-v1-...
 cd demo && ./run-demo.sh "What are the top 3 DeFi protocols?"
 ```
 
-### Demo output
+### Live Base Mainnet Example
+
+Real on-chain interaction — agent paid for an AI API call using staking yield on Base mainnet:
 
 ```
-Treasury Status (Before):  0.1 wstETH yield, 10 wstETH principal
-Agent pays:                0.00001 wstETH via claimYield()
-AI Response:               [real response from OpenRouter]
-Treasury Status (After):   0.09999 wstETH yield, 10 wstETH principal
-Principal unchanged:       YES
+╔══════════════════════════════════════════════════════╗
+║   stETH Agent Treasury — MPP Demo Agent             ║
+║   Paying for AI with staking yield                  ║
+╚══════════════════════════════════════════════════════╝
+
+Agent wallet: 0xD49d5290C81a921C324C1443032209050Ca84614
+Treasury:     0x6DE964cD52cedb8D8FbD9BFE4c07f35c3cc9c1Ea
+
+── Treasury Status (Before) ──
+  Available yield:    0.000795607346949846 wstETH
+  Principal (stETH):  0.000978596022459146 stETH
+  Contract balance:   0.001591214693899691 wstETH
+
+[Agent] Prompt: "What is wstETH and how does Lido staking yield work?"
+
+[Agent] Requesting: POST http://localhost:3001/v1/chat/completions
+[Agent] Got 402 — payment required: 0.00001 wstETH to 0x04f3D489...
+[Agent] Claiming yield from treasury...
+[Agent] Payment tx: 0x07c94d4f47be0a22e2eeeab0777cb4e2c9ce6a2220da5717f145274174bef449
+[Agent] Confirmed in block 43719167 (status: success)
+[Agent] Retrying with payment credential...
+[Agent] Payment receipt: method="wsteth-yield", reference="0x07c94d4f..."
+
+── AI Response ──
+wstETH (Wrapped staked Ether) is a token that represents staked ETH
+(via Lido) in a tradable, ERC-20 format. When you stake ETH through
+Lido, you receive wstETH, which accrues staking rewards automatically.
+
+── Treasury Status (After) ──
+  Available yield:    0.000785607346949846 wstETH
+  Principal (stETH):  0.000978596022459146 stETH
+
+── Summary ──
+  Yield spent:        0.00001 wstETH
+  Principal unchanged: YES
 ```
+
+**On-chain proof (Base mainnet):**
+- Payment tx (claimYield): [`0x07c94d4f...`](https://basescan.org/tx/0x07c94d4f47be0a22e2eeeab0777cb4e2c9ce6a2220da5717f145274174bef449) | [Blockscout](https://base.blockscout.com/tx/0x07c94d4f47be0a22e2eeeab0777cb4e2c9ce6a2220da5717f145274174bef449)
+- Deposit tx: [`0x2ec4eede...`](https://basescan.org/tx/0x2ec4eede7c8d87c2c113354188f107b32359d31239c614eb1604cffb6ee2f4b7) | [Blockscout](https://base.blockscout.com/tx/0x2ec4eede7c8d87c2c113354188f107b32359d31239c614eb1604cffb6ee2f4b7)
+- TopUpYield tx: [`0x9112b6de...`](https://basescan.org/tx/0x9112b6dee703d46197ecaa7942205e6615b853d75d944b381cba4960e8a86cab) | [Blockscout](https://base.blockscout.com/tx/0x9112b6dee703d46197ecaa7942205e6615b853d75d944b381cba4960e8a86cab)
+- Whitelist server tx: [`0xc5c8f110...`](https://basescan.org/tx/0xc5c8f1108e0f06165f7f158d74cd51b570b9ee762e290c81071653bdba446543) | [Blockscout](https://base.blockscout.com/tx/0xc5c8f1108e0f06165f7f158d74cd51b570b9ee762e290c81071653bdba446543)
 
 ## Test Suite
 
